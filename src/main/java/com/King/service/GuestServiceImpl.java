@@ -11,13 +11,13 @@ import com.King.entity.Guest;
 import com.King.model.GuestModel;
 import com.King.repository.GuestRepository;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
-
 @Service
 public class GuestServiceImpl implements GuestService {
 
 	@Autowired
 	private GuestRepository guestRepo;
+	@Autowired
+	private BookingService bookService;
 
 	@Override
 	public String add(GuestModel model) {
@@ -32,7 +32,9 @@ public class GuestServiceImpl implements GuestService {
 		GuestModel model = new GuestModel();
 		Guest guest = guestRepo.findById(id).orElseThrow(() -> new Exception("No Guest with :" + id));
 		BeanUtils.copyProperties(guest, model);
-		model.setBookingId(guest.getBooking().getId());
+		// add bookId
+
+		//model.setBookingId(bookService.getBookingId(id));
 		return model;
 	}
 
@@ -43,6 +45,7 @@ public class GuestServiceImpl implements GuestService {
 		guests.stream().forEach(guest -> {
 			GuestModel model = new GuestModel();
 			BeanUtils.copyProperties(guest, model);
+		//	model.setBookingId(bookService.getBookingId(guest.getId()));
 			models.add(model);
 		});
 		return models;

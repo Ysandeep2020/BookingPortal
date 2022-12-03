@@ -26,9 +26,9 @@ public class BookingServiceImpl implements BookingService {
 				.orElseThrow(() -> new Exception("No Guest are thre with Id:" + module.getGuestId()));
 		booking.setGuest(guest);
 		Booking save = repo.save(booking);
-         // add that book id into  Guest
-		 guest.setBooking(save);
-	     guestRepo.save(guest);
+		// add that book id into Guest
+		guest.setBooking(save);
+		guestRepo.save(guest);
 		return "Booked By Id:";
 	}
 
@@ -38,13 +38,18 @@ public class BookingServiceImpl implements BookingService {
 		Booking booking = repo.findById(id).orElseThrow(() -> new Exception("No booking are there with Id:" + id));
 		BeanUtils.copyProperties(booking, module);
 		// add guest Id
-		
+
 		Guest guest = guestRepo.findById(booking.getGuest().getId())
 				.orElseThrow(() -> new Exception("No Guest are thre with Id:" + module.getGuestId()));
 		module.setGuestId(guest.getId());
 		// Add bills
 		module.setBills(booking.getBills());
 		return module;
+	}
+
+	public int getBookingId(int guestId) {
+		Booking booking = repo.findByGuest(guestId);
+		return booking != null ? booking.getId() : 0;
 	}
 
 }

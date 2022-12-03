@@ -8,4 +8,6 @@ public interface BookingService {
 
 	BookingModule fetchById(int id) throws Exception;
 
+	public int getBookingId(int guestId);
+
 }

@@ -7,5 +7,7 @@ import com.King.entity.Booking;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
+    
+	Booking findByGuest(int guest);
          
 }

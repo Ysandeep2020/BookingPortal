@@ -40,6 +40,18 @@ public class Guest {
 	@OneToMany(mappedBy = "guest")
 	@JsonIgnore
 	private List<Bill> bills;
+	
+	@OneToOne
+	@JoinColumn(name = "booking_id")
+	private Booking booking;
+
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
 
 	public List<Bill> getBills() {
 		return bills;
@@ -53,7 +65,8 @@ public class Guest {
 	public String toString() {
 		return "Guest [id=" + id + ", title=" + title + ", firstName=" + firstName + ", lastName=" + lastName + ", dob="
 				+ dob + ", gender=" + gender + ", mobile=" + mobile + ", email=" + email + ", password=" + password
-				+ ", passportNo=" + passportNo + ", address=" + address + ", bills=" + bills + "]";
+				+ ", passportNo=" + passportNo + ", address=" + address + ", bills=" + bills + ", booking=" + booking
+				+ "]";
 	}
 
 	public String getDob() {

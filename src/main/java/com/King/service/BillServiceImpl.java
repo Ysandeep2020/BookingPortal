@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.King.entity.Bill;
+import com.King.entity.Booking;
 import com.King.entity.Guest;
 import com.King.model.BillModel;
 import com.King.repository.BillRepository;
+import com.King.repository.BookingRepository;
 import com.King.repository.GuestRepository;
 
 @Service
@@ -19,6 +21,8 @@ public class BillServiceImpl implements BillService {
 	private BillRepository billRepo;
 	@Autowired
 	private GuestRepository guestRepo;
+	@Autowired
+	private BookingRepository bookingRepo;
 
 	@Override
 	public String add(BillModel model) throws Exception {
@@ -30,6 +34,10 @@ public class BillServiceImpl implements BillService {
 		Guest guest = guestRepo.findById(model.getGuestId())
 				.orElseThrow(() -> new Exception("No Guest with :" + model.getGuestId()));
 		bill.setGuest(guest);
+		Booking booking = bookingRepo.findById(model.getBooingId())
+				.orElseThrow(() -> new Exception("No Booking with :" + model.getBooingId()));
+		bill.setGuest(guest);
+		bill.setBooking(booking);
 		billRepo.save(bill);
 		return "Invoice Added !";
 	}
@@ -40,6 +48,10 @@ public class BillServiceImpl implements BillService {
 		Bill bill = billRepo.findById(id).orElseThrow(() -> new Exception("No Guest with :" + id));
 		BeanUtils.copyProperties(bill, model);
 		model.setGuestId(bill.getId());
+		if(bill.getBooking()==null) {
+			throw new RuntimeException("No Booking ...please book fiest then go further");
+		}
+		model.setBooingId(bill.getBooking().getId());
 		return model;
 	}
 
@@ -51,6 +63,10 @@ public class BillServiceImpl implements BillService {
 			BillModel model = new BillModel();
 			BeanUtils.copyProperties(bill, model);
 			model.setGuestId(bill.getId());
+			if(bill.getBooking()==null) {
+				throw new RuntimeException("No Booking ...please book fiest then go further");
+			}
+			model.setBooingId(bill.getBooking().getId());
 			models.add(model);
 		});
 		return models;

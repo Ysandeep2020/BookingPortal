@@ -27,7 +27,6 @@ http://localhost:7070/guest/all
 Add Bill
 =========
 http://localhost:7070/bill/add
-
 {
 "roomCharge":1299,
 "roomService":3299,
@@ -40,10 +39,28 @@ http://localhost:7070/bill/add
 "creditCardNo":34324234,
 "expireDate":"11-10-2022",
 "chequeNo":3248328492,
-"guestId":1
+"guestId":1,
+"booingId":1
 }
 finds
 ========
 http://localhost:7070/bill/{id}
 http://localhost:7070/bill/all
 
+
+Booking
+==========
+http://localhost:7070/booking/add
+
+{
+    "bookingDate":"12-12-2020",
+    "bookingTime":"12:14",
+    "arrivalDate":"12-12-2020",
+    "departureDate":"12-12-2020",
+    "estArrivalDate":"12-12-2020",
+    "estDepartureDate":"12-12-2020",
+    "numAdults":4,
+    "numChildren":1,
+    "sepcialReq":"YEs",
+    "guestId":1
+}

@@ -32,6 +32,7 @@ public class GuestServiceImpl implements GuestService {
 		GuestModel model = new GuestModel();
 		Guest guest = guestRepo.findById(id).orElseThrow(() -> new Exception("No Guest with :" + id));
 		BeanUtils.copyProperties(guest, model);
+		model.setBookingId(guest.getBooking().getId());
 		return model;
 	}
 

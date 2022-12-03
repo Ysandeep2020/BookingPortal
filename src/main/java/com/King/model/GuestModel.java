@@ -21,6 +21,16 @@ public class GuestModel {
 	private Address address;
 	@JsonProperty(access = Access.READ_ONLY)
 	private List<Bill> bills;
+	@JsonProperty(access = Access.READ_ONLY)
+	private int bookingId;
+
+	public int getBookingId() {
+		return bookingId;
+	}
+
+	public void setBookingId(int bookingId) {
+		this.bookingId = bookingId;
+	}
 
 	public List<Bill> getBills() {
 		return bills;
@@ -114,7 +124,8 @@ public class GuestModel {
 	public String toString() {
 		return "GuestModel [title=" + title + ", firstName=" + firstName + ", lastName=" + lastName + ", Dob=" + Dob
 				+ ", gender=" + gender + ", mobile=" + mobile + ", email=" + email + ", password=" + password
-				+ ", passportNo=" + passportNo + ", address=" + address + ", bills=" + bills + "]";
+				+ ", passportNo=" + passportNo + ", address=" + address + ", bills=" + bills + ", bookingId="
+				+ bookingId + "]";
 	}
 
 }

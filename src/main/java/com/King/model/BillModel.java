@@ -1,7 +1,5 @@
 package com.King.model;
 
-import com.King.enums.PaymentMode;
-
 public class BillModel {
 
 	private double roomCharge;
@@ -15,6 +13,16 @@ public class BillModel {
 	private long creditCardNo;
 	private String expireDate;
 	private long chequeNo;
+	private int guestId;
+	private int booingId;
+
+	public int getBooingId() {
+		return booingId;
+	}
+
+	public void setBooingId(int booingId) {
+		this.booingId = booingId;
+	}
 
 	public String getPaymentMode() {
 		return paymentMode;
@@ -23,8 +31,6 @@ public class BillModel {
 	public void setPaymentMode(String paymentMode) {
 		this.paymentMode = paymentMode;
 	}
-
-	private int guestId;
 
 	public int getGuestId() {
 		return guestId;
@@ -119,7 +125,8 @@ public class BillModel {
 		return "BillModel [roomCharge=" + roomCharge + ", roomService=" + roomService + ", restoCharge=" + restoCharge
 				+ ", barCharge=" + barCharge + ", miscCharge=" + miscCharge + ", ifLateCheckout=" + ifLateCheckout
 				+ ", paymentDate=" + paymentDate + ", paymentMode=" + paymentMode + ", creditCardNo=" + creditCardNo
-				+ ", expireDate=" + expireDate + ", chequeNo=" + chequeNo + ", guestId=" + guestId + "]";
+				+ ", expireDate=" + expireDate + ", chequeNo=" + chequeNo + ", guestId=" + guestId + ", booingId="
+				+ booingId + "]";
 	}
 
 }

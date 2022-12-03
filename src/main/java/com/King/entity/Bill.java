@@ -39,6 +39,20 @@ public class Bill {
 	@JoinColumn(name = "guest_id")
 	private Guest guest;
 
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "booking_id")
+	private Booking booking;
+
+	
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -148,7 +162,8 @@ public class Bill {
 		return "Bill [id=" + id + ", roomCharge=" + roomCharge + ", roomService=" + roomService + ", restoCharge="
 				+ restoCharge + ", barCharge=" + barCharge + ", miscCharge=" + miscCharge + ", ifLateCheckout="
 				+ ifLateCheckout + ", paymentDate=" + paymentDate + ", paymentMode=" + paymentMode + ", creditCardNo="
-				+ creditCardNo + ", expireDate=" + expireDate + ", chequeNo=" + chequeNo + ", guest=" + guest + "]";
+				+ creditCardNo + ", expireDate=" + expireDate + ", chequeNo=" + chequeNo + ", guest=" + guest
+				+ ", booking=" + booking + "]";
 	}
 
 }

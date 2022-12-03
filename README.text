@@ -1,0 +1,66 @@
+Add Guest
+==========
+http://localhost:7070/guest/add
+
+{
+    "title": "Title1",
+    "firstName": "kuldeep",
+    "lastName": "yadav",
+    "dob": "10-04-1997",
+    "gender": "male",
+    "mobile": "7568368888",
+    "email": "kk@gmail.com",
+    "password": "Kuldeep@123",
+    "passportNo": 12344555553,
+    "address": {
+        "address": "vill -sihor",
+        "city": "jhunjhunu",
+        "state": "Rajasthan",
+        "pincode": 333036
+    }
+}
+Finds
+========
+http://localhost:7070/guest/{id}
+http://localhost:7070/guest/all
+
+Add Bill
+=========
+http://localhost:7070/bill/add
+{
+"roomCharge":1299,
+"roomService":3299,
+"restoCharge":34334,
+"barCharge":2342,
+"miscCharge":3243,
+"ifLateCheckout":false,
+"paymentDate":"11-10-2022",
+"paymentMode":"DebitCard",
+"creditCardNo":34324234,
+"expireDate":"11-10-2022",
+"chequeNo":3248328492,
+"guestId":1,
+"booingId":1
+}
+finds
+========
+http://localhost:7070/bill/{id}
+http://localhost:7070/bill/all
+
+
+Booking
+==========
+http://localhost:7070/booking/add
+
+{
+    "bookingDate":"12-12-2020",
+    "bookingTime":"12:14",
+    "arrivalDate":"12-12-2020",
+    "departureDate":"12-12-2020",
+    "estArrivalDate":"12-12-2020",
+    "estDepartureDate":"12-12-2020",
+    "numAdults":4,
+    "numChildren":1,
+    "sepcialReq":"YEs",
+    "guestId":1
+}

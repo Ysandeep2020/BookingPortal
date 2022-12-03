@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.King.entity.Guest;
 import com.King.model.GuestModel;
+import com.King.model.HotelModel;
 import com.King.service.GuestService;
+import com.King.service.HotelService;
 
 @RestController
 @RequestMapping("/guest")
 public class GuestController {
 	@Autowired
 	private GuestService guestService;
+	@Autowired
+	private HotelService hotelService;
 
 	@PostMapping("/add")
 	public String add(@RequestBody GuestModel model) {
@@ -35,4 +39,18 @@ public class GuestController {
 		return guestService.fetchAll();
 	}
 
+	@GetMapping("/hotel/{id}")
+	public HotelModel findByHotelId(@PathVariable int id) throws Exception {
+		return hotelService.findById(id);
+	}
+	
+	@GetMapping("/hotel/all")
+	public List<HotelModel> findAllHotels() throws Exception {
+		return hotelService.findAll2();
+	}
+	
+	@PostMapping("/hotel/add")
+	public String addHotel(@RequestBody HotelModel model) {
+		return hotelService.add(model);
+	}
 }
